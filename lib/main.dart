@@ -31,7 +31,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final String urlToStreamVideo = 'tcp://192.168.41.1:35001';
+  final String urlToStreamVideo = 'https://bitdash-a.akamaihd.net/content/MI201109210084_1/m3u8s/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.m3u8';
   VlcPlayerController controller;
 
   String log = "--------------------";
@@ -95,7 +95,9 @@ class _MyHomePageState extends State<MyHomePage> {
               FlatButton(
                 child: Text("capture"),
                 onPressed: () async {
+                  print("capture");
                   var data = await controller.takeSnapshot();
+                  print(data?.length);
                    setState(() {
                      imageSnapshot = data;
                    });
@@ -105,7 +107,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           VlcPlayer(
             aspectRatio: 16 / 9,
-            url: "tcp://192.168.41.1:35001",
+            url: urlToStreamVideo,
             controller: controller,
             placeholder: Center(
               child: CircularProgressIndicator(),
