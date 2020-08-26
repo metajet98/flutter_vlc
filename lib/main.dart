@@ -31,7 +31,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final String urlToStreamVideo = 'https://bitdash-a.akamaihd.net/content/MI201109210084_1/m3u8s/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.m3u8';
+  final String urlToStreamVideo = 'tcp://192.168.41.1:35001';
   VlcPlayerController controller;
 
   String log = "--------------------";
