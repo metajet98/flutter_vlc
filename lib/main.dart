@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
@@ -35,10 +36,12 @@ class _MyHomePageState extends State<MyHomePage> {
   VlcPlayerController controller;
 
   String log = "--------------------";
+  String _timeString;
   Uint8List imageSnapshot;
 
   @override
   void initState() {
+    Timer.periodic(Duration(milliseconds: 1), (Timer t) => _getTime());
     controller = new VlcPlayerController(
         // Start playing as soon as the video is loaded.
         onInit: () {
@@ -54,6 +57,14 @@ class _MyHomePageState extends State<MyHomePage> {
       });
     });
     super.initState();
+  }
+
+  _getTime() {
+    final DateTime now = DateTime.now();
+    final String formattedDateTime = now.toIso8601String();
+    setState(() {
+      _timeString = formattedDateTime;
+    });
   }
 
   @override
@@ -113,6 +124,7 @@ class _MyHomePageState extends State<MyHomePage> {
               child: CircularProgressIndicator(),
             ),
           ),
+          Text("Current Time: $_timeString", style: TextStyle(color: Colors.red, fontSize: 14))
         ],
       ),
     );
